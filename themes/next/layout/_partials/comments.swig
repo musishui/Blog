@@ -1,11 +1,25 @@
 {% if page.comments %}
-  <!--高速版-->
-<div id="SOHUCS"></div>
-<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
-<script type="text/javascript">
-    window.changyan.api.config({
-        appid: 'cys6O6SbX',
-        conf: 'prod_72740cb9e5931fd9de2ca5fd52f74235'
-    });
-</script> 
+  <div class="comments" id="comments">
+    {% if (theme.duoshuo and theme.duoshuo.shortname) or theme.duoshuo_shortname %}
+      <div class="ds-thread" data-thread-key="{{ page.path }}"
+           data-title="{{ page.title }}" data-url="{{ page.permalink }}">
+      </div>
+    {% elseif theme.facebook_sdk.enable and theme.facebook_comments_plugin.enable %}
+      <div class="fb-comments"
+           data-href="{{ page.permalink }}"
+           data-numposts="{{ theme.facebook_comments_plugin.num_of_posts }}"
+           data-width="{{ theme.facebook_comments_plugin.width }}"
+           data-colorscheme="{{ theme.facebook_comments_plugin.scheme }}">
+      </div>
+    {% elseif theme.disqus_shortname %}
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    {% elseif theme.hypercomments_id %}
+      <div id="hypercomments_widget"></div>
+    {% endif %}
+  </div>
 {% endif %}
