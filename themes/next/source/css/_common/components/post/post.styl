@@ -32,33 +32,18 @@
   -ms-transform: rotate(30deg);
   transform: rotate(30deg);
 }
-.blog-list{
-  .post-body{
-      max-height: 400px;
-      overflow: hidden;
-      position: relative;
-  }
-
-  .post-body:after{
-      content:' ';
-      height: 120px;
-      width: 100%;
-      display: block;
-      position: absolute;
-      bottom: 0;
-      background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.8));
-  }
-}
-
 
 @import "post-expand";
 @import "post-collapse";
 @import "post-type";
 @import "post-title";
 @import "post-meta";
-@import "post-more-link";
+@import "post-button";
 @import "post-tags";
 @import "post-nav";
 @import "post-eof";
 @import "post-gallery";
 @import "post-reward" if hexo-config('alipay') or hexo-config('wechatpay');
+@import "post-copyright" if hexo-config('post_copyright.enable');
+@import "post-wordcount" if !hexo-config('post_wordcount.separated_meta');
+@import "post-widgets" if (hexo-config('facebook_sdk.enable') and hexo-config('facebook_sdk.like_button')) or (hexo-config('vkontakte_api.enable') and hexo-config('vkontakte_api.like')) or hexo-config('rating.enable');
